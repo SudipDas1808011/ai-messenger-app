@@ -1,26 +1,35 @@
 const fs = require('fs');
 const path = require('path');
 const express = require('express');
-const bodyParser = require('body-parser');
 const axios = require('axios');
 require('dotenv').config(); // Load .env variables
 
 const app = express();
-app.use(bodyParser.json());
+app.use(express.json()); // Replaces body-parser
 
 // Load system prompt
 const promptPath = path.resolve(__dirname, './systemPrompt.txt');
 const systemPrompt = fs.readFileSync(promptPath, 'utf-8');
 
-// Secrets from .env
-const VERIFY_TOKEN = process.env.VERIFY_TOKEN;
-const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+// Validate environment variables
+const { VERIFY_TOKEN, PAGE_ACCESS_TOKEN, GEMINI_API_KEY } = process.env;
+if (!VERIFY_TOKEN || !PAGE_ACCESS_TOKEN || !GEMINI_API_KEY) {
+  throw new Error('Missing required environment variables in .env');
+}
 
 // In-memory session store
 const sessions = new Map();
 const SESSION_TIMEOUT = 30 * 60 * 1000; // 30 minutes
-const filePathJson = path.join(__dirname, '../products.json');
+
+// Periodic session cleanup
+setInterval(() => {
+  const now = Date.now();
+  for (const [id, session] of sessions.entries()) {
+    if (now - session.last_active > SESSION_TIMEOUT) {
+      sessions.delete(id);
+    }
+  }
+}, 10 * 60 * 1000); // Every 10 minutes
 
 // Root route
 app.get('/', (req, res) => {
@@ -37,7 +46,7 @@ app.get('/facebook', (req, res) => {
     console.log('Webhook verified!');
     res.status(200).send(challenge);
   } else {
-    res.sendStatus(403);
+    res.status(403).send('Forbidden: This endpoint is for Facebook webhook verification only.');
   }
 });
 
@@ -46,11 +55,11 @@ app.post('/facebook', async (req, res) => {
   const body = req.body;
 
   if (body.object === 'page') {
-    body.entry.forEach(async entry => {
-      const webhookEvent = entry.messaging[0];
-      const senderId = webhookEvent.sender.id;
+    for (const entry of body.entry) {
+      const webhookEvent = entry.messaging?.[0];
+      const senderId = webhookEvent?.sender?.id;
 
-      if (webhookEvent.message && webhookEvent.message.text) {
+      if (webhookEvent?.message?.text && senderId) {
         const userMessage = webhookEvent.message.text;
 
         // Session handling
@@ -86,14 +95,14 @@ app.post('/facebook', async (req, res) => {
             { recipient: { id: senderId }, message: { text: reply } }
           );
         } catch (error) {
-          console.error(error);
+          console.error('Gemini or Messenger API error:', error.response?.data || error.message);
           await axios.post(
             `https://graph.facebook.com/v18.0/me/messages?access_token=${PAGE_ACCESS_TOKEN}`,
             { recipient: { id: senderId }, message: { text: 'Oops! Something went wrong.' } }
           );
         }
       }
-    });
+    }
     res.status(200).send('EVENT_RECEIVED');
   } else {
     res.sendStatus(404);
