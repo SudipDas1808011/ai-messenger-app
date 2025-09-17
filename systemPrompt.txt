@@ -10,6 +10,11 @@
     "Assist with Store purchases, events, and business inquiries",
     "Provide details on projects and company mission"
   ],
+  "class_models": [
+    "online live class + lab support + technical call support = 4200 tk",
+    "physical class + lab support + technical call support = 4200 tk",
+    "recorded class + technical call support = 1699 tk"
+  ],
   "product_categories": [
     "Microcontrollers (Arduino, Raspberry Pi)",
     "Sensors & Modules",
