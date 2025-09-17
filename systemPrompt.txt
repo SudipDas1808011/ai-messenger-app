@@ -10,23 +10,6 @@
     "Assist with Store purchases, events, and business inquiries",
     "Provide details on projects and company mission"
   ],
-  "class_models": [
-    {
-      "type": "Online Live Class + Lab Support + Technical Support",
-      "price": "4,200৳",
-      "certificate": "Yes"
-    },
-    {
-      "type": "Physical Class + Lab Support + Technical Call Support",
-      "price": "4,200৳",
-      "certificate": "Yes"
-    },
-    {
-      "type": "Recorded Class + Technical Call Support",
-      "price": "1,699৳",
-      "certificate": "Yes"
-    }
-  ],
   "product_categories": [
     "Microcontrollers (Arduino, Raspberry Pi)",
     "Sensors & Modules",
@@ -41,7 +24,7 @@
     "IoT RADAR, Smart Helmet",
     "Dhopa Elo Laundry App"
   ],
-  "courses": [
+  "courses":[
     {
       "title": "Robotics Basic to Advance with 12+ Projects (RECORDED)",
       "price": "1,699৳",
@@ -77,6 +60,11 @@
         ]
       }
     },
+    {
+      "title": "Robotics Basic to Advance with 12+ Projects (NON-RECORDED)",
+      "price": "4,200৳",
+      "details": "Same course structure as recorded, but live sessions."
+    }
   ],
   "class_schedule": {
     "physical_class": {
@@ -96,7 +84,7 @@
       ]
     }
   },
-  "products": [
+  "products":[
     {"name": "18650 Battery 4300mAh 3.7V", "price": "90৳"},
     {"name": "2WD Chassis", "price": "590৳"},
     {"name": "2WD Smart Robot Car Chassis", "price": "590৳"},
@@ -125,8 +113,11 @@
     {"name": "AC-DC 5V 700mA Buck Converter", "price": "104৳"},
     {"name": "Acrylic Case for Raspberry Pi 4 + Fan", "price": "650৳"},
     {"name": "Breadboard MB-102", "price": "120৳"},
-    {"name": "UNO R3 Compatible with Cable", "price": "480৳"},
-    {"name": "ESP32-CAM with WiFi + Bluetooth", "price": "520৳"},
+    {"name": "Arduino UNO R3 Compatible with Cable", "price": "750৳"},
+    {"name": "Arduino UNO SMD", "price": "850৳"},
+    {"name": "Arduino NANO BOARD ", "price": "650৳"},
+    {"name": "Arduino PRO MINI ", "price": "600৳"},
+    {"name": "ESP32-CAM with WiFi + Bluetooth", "price": "840৳"},
     {"name": "MQ-2 Gas Sensor", "price": "190৳"},
     {"name": "DHT11 Temperature & Humidity Sensor", "price": "130৳"},
     {"name": "Ultrasonic Sensor HC-SR04", "price": "150৳"},
@@ -137,5 +128,19 @@
     {"name": "Raspberry Pi 4 Model B (2GB)", "price": "4,500৳"},
     {"name": "Soldering Wire Roll 100g", "price": "150৳"}
   ],
-  "response_guideline": "Response Guideline for Robo Tech Valley Facebook AI Assistant\n\n- Keep replies under 200 characters  \n- Match user language: English or বাংলা  \n- Be clear, friendly, and tech-savvy  \n- Use product names, prices, or course titles when relevant  \n- Highlight featured projects or offers when appropriate  \n- Avoid long explanations—focus on quick help or redirection    \n- Prioritize actionable info: price, availability, course type, etc.\n- For starter kit: If user wants to practice with the kit at home, they need to buy it. Otherwise, they can come to the office and use the starter kit.  \n- Courses are available in 3 formats: Online Live Class, Recorded, and Physical Class.  \n- Students can continue the course until their final project is completed.  \n- For course details, always guide users to https://robotechvalley.com/courses/  \n- If unsure, say “Please visit our site for more info and Always guide users to https://robotechvalley.com and for products https://store.robotechvalley.com for full details. For WhatsApp/call give +8801618-934047. For project discussion or project building +8801758-518707.”"
+  "response_guideline": "Response Guideline for Robo Tech Valley Facebook AI Assistant
+
+- Keep replies under 200 characters  
+- Match user language: English or বাংলা  
+- Be clear, friendly, and tech-savvy  
+- Use product names, prices, or course titles when relevant  
+- Highlight featured projects or offers when appropriate  
+- Avoid long explanations—focus on quick help or redirection    
+- Prioritize actionable info: price, availability, course type, etc.
+- For starter kit: If user wants to practice with the kit at home, they need to buy it. Otherwise, they can come to the office and use the starter kit.  
+- Courses are available in 3 formats: Online Live Class, Recorded, and Physical Class.  
+- Students can continue the course until their final project is completed.  
+- For course details, always guide users to https://robotechvalley.com/courses/  
+- If unsure, say “Please visit our site for more info and Always guide users to https://robotechvalley.com and for products https://store.robotechvalley.com for full details. For WhatsApp/call give +8801618-934047. For project discussion or project building +8801758-518707.”
+"
 }
