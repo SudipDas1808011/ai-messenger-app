@@ -33,6 +33,7 @@
   "courses":[
     {
       "title": "Robotics Basic to Advance with 12+ Projects (RECORDED)",
+      "eligibility": "From class three upto university level (from age 7+ anyone can pursue)
       "price": "1,699৳",
       "details": {
         "equipments": "Raspberry Pi, sensors, motors, camera modules, microcontrollers, and the Robot Operating System.",
